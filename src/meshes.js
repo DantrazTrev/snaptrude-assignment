@@ -17,49 +17,77 @@ const randomColor = () => {
 }
 
 
+const createMaterial = (scene,id) => {
+
+  if(!scene){
+    throw new Error('No scene provided')
+  }
+
+  if(!id){
+     id = uuid()
+  }
+
+  const material = new BABYLON.StandardMaterial(id, scene);
+  material.emissiveColor = randomColor();
+  return material;
+}
+
+
+/**
+ * Adds meshes to the scene.
+ * 
+ * @param {BABYLON.Scene} scene - The scene to add the meshes to.
+ * @returns {Promise<void>} - A promise that resolves when the meshes are added.
+ */
 const addMeshes = async (scene) => {
 
-  
+
+  if(!scene){
+    throw new Error('No scene provided')
+  }
+
+  // Create a sphere
+
   const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.1 ,roughness:0.7}, scene);
   sphere.position.y = 0.05;
   sphere.position.x = 0.4;
-  sphere.material = new BABYLON.StandardMaterial('material', scene);
+  sphere.material = createMaterial(scene,'sphereMaterial');
 
-  sphere.material.emissiveColor = randomColor();
+
+  // Create a box
+
 
   const box = BABYLON.MeshBuilder.CreateBox("box", { size: 0.2 }, scene);
   box.position.y = 0.1;
   box.position.x = -0.1;
-  box.material = new BABYLON.StandardMaterial('material', scene);
-  box.material.disableLighting = false;
-  box.material.emissiveColor = randomColor();
+  box.material = createMaterial(scene,'boxMaterial');
+
+
+  // Create a torus
+
 
   const torus = BABYLON.MeshBuilder.CreateTorus("torus", { diameter: 0.2, thickness: 0.05, }, scene);
   torus.position.y = 0.23;
   torus.position.x = -0.1;
-  torus.material = box.material;
- 
-  torus.material.emissiveColor = randomColor();
+  torus.material = createMaterial(scene,'torusMaterial');
+
+
+  // Create a cylinder
 
   const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", { diameter: 0.15, height: 0.2, tessellation: 6 }, scene);
   cylinder.position.y = 0.1;
   cylinder.position.x = 0.2;
   cylinder.position.z = 0.2
-  cylinder.material = new BABYLON.StandardMaterial('material', scene);
-  
+  cylinder.material = createMaterial(scene,'cylinderMaterial');
 
-  cylinder.material.emissiveColor = randomColor();
 
+  // Try to load an obj file
   try {
     const meshes = await BABYLON.SceneLoader.ImportMeshAsync('', '/', 'cat.obj', scene);
     const mesh = meshes.meshes[0];
-    const material = new BABYLON.StandardMaterial('cat', scene);
     
-    material.emissiveColor = randomColor();
-    material.albedoColor = new BABYLON.Color3(1, 1, 1); // Base color
-    
-    
-    mesh.material = material;
+    mesh.material = createMaterial(scene,'catMaterial');
+
     mesh.scaling = new BABYLON.Vector3(0.05, 0.05, 0.05);
     mesh.position.y = 0.01;
     mesh.position.x = 0.2;
