@@ -1,6 +1,6 @@
 import * as BABYLON from '@babylonjs/core';
-import loadMeshes from './mesh';
-import handleMeshHover from './event';
+import loadMeshes from './meshes';
+import handleMeshHover from './eventHandlers';
 import renderUI from './ui';
 
 // Get the canvas element from the DOM.

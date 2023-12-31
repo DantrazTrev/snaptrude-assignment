@@ -12,7 +12,7 @@ function renderUI(updateValue) {
     controlPanel.width = "220px";
 
     // Create a color wheel
-    const colorWheel = new GUI.ColorPicker();
+    const colorWheel = new GUI.ColorPicker("OutlineColor");
     colorWheel.width = "200px";
     colorWheel.height = "200px";
     colorWheel.horizontalAlignment = GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
@@ -24,7 +24,7 @@ function renderUI(updateValue) {
     controlPanel.addControl(colorWheel);
 
     // Create a slider
-    const slider = new GUI.Slider();
+    const slider = new GUI.Slider("OutlineWidth");
     slider.minimum = 2;
     slider.maximum = 70;
     slider.step = 10;

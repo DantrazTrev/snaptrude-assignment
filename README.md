@@ -83,6 +83,16 @@ The diagram given in the assigment(refer below)
 Might be refering to a highlight effect rather than an outline effect. However considering the time constraints I have implemented an outline effect.
 
 
+Apporaches not taken
+
+1) Duplicate the mesh and scale it up to create an outline effect.
+
+    This would be a valid approach altho the outline effect might not be visible through other meshes.
+
+2) Using a blur filter and a shader to apply the blur filter to the mesh.
+
+    This would be a valid approach tho the blur would not be ideal for an outline effect.
+
 
 
 To create the outline effect I have used a slighlty modified Sobel Edge Detection shader(`./public/shaders/sobel.fragment`)
@@ -126,10 +136,12 @@ The UI has one slider for thickness and one color picker
 2. I can also see the overlay effect on the outline. This is because of the way the sobel shader works. It is not a perfect solution but it works for the most part , specifically for non round meshes.
 
 
-3. Techically could have used a better algorithm for the outline effect. But I have used the sobel shader as it is a very simple shader and works for the most part.
+3. Techically could have used a better algorithm for the outline effect. But I have used the sobel shader as it is a very simple shader and works for the most part. Altho it took me a while to get it working.
 
 
-4. I have used a simple UI for the bonus task. Ideally I would have liked to use a color picker with a color wheel. But I have not had the time to implement it. 
+4. I have used a simple UI for the bonus task. Ideally it would have inputs and text labels for the UI. But I have used a simple slider and a color picker for the sake of time.
 
 
-5. Since I was very new to Babylon.js I have used a lot of the built in functions and classes. I have not had the time to refactor the code to make it more modular and reusable.
+5. I have used the RenderTargetTexture to create the outline effect. Could've been done using a post processing pipeline. But the RenderTargetTexture was easier toi implement and can ideally scale to multiple meshes and multiple passes.
+
+
