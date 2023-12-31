@@ -1,6 +1,10 @@
 # Snaptrude Assignment
 
 
+## Video demo
+https://spiti.xyz/embedv/IfJE0xrSCH84biHxBJsf-1e38ddbb-ac39-495e-bf1d-99dec4fe294c
+
+
 ## Tasks
 ### Task 1
 1. Create a Babylon scene with 2-3 meshes, using the built-in mesh builder.
