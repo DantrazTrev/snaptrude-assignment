@@ -26,7 +26,8 @@ function renderUI(updateValue) {
     // Create a slider
     const slider = new GUI.Slider();
     slider.minimum = 2;
-    slider.maximum = 30;
+    slider.maximum = 70;
+    slider.step = 10;
     slider.value = 3;
     slider.width = "200px";
     slider.height = "20px";
