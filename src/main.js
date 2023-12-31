@@ -48,12 +48,14 @@ async function createScene() {
   return scene;
 }
 
-const scene = await createScene();
+const scene = createScene().then((scene) => {
+  // Register a render loop to repeatedly render the scene
+  engine.runRenderLoop(() => {
+    scene.render();
+  });
 
-engine.runRenderLoop(() => {
-  scene.render();
-});
-
-window.addEventListener('resize', () => {
-  engine.resize();
+  // Watch for browser/canvas resize events
+  window.addEventListener('resize', () => {
+    engine.resize();
+  });
 });
